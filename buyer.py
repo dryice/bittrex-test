@@ -21,7 +21,11 @@ def get_orderbook(currency):
     my_bittrex = bittrex.Bittrex(API_KEY, API_KEY_SECRET)
     market = "BTC-{}".format(currency)
 
-    result = my_bittrex.get_orderbook(market, bittrex.BUY_ORDERBOOK)
+    try:
+        result = my_bittrex.get_orderbook(market, bittrex.BUY_ORDERBOOK)
+    except:
+        print "Error connecting to bittrex, please try again after a few seconds"
+        sys.exit(1)
 
     if result['success']:
         return result['result']
@@ -34,7 +38,7 @@ def do_calculate(offers, amount):
     total_get = 0
 
     for offer in offers:
-        if amount_left > offer['Quantity']:
+        if amount_left >= offer['Quantity']:
             total_get += offer['Quantity'] * offer['Rate']
             amount_left -= offer['Quantity']
         else:
