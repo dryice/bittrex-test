@@ -27,17 +27,17 @@ def get_orderbook(currency):
     try:
         result = my_bittrex.get_orderbook(market, bittrex.BUY_ORDERBOOK)
     except:
-        print "Error connecting to bittrex, please try again after a few seconds"
+        print("Error connecting to bittrex, please try again after a few seconds")
         sys.exit(1)
 
     if result['success']:
         return result['result']
     else:
-        print "Something is wrong. Error message from bittrex: {}".format(result['message'])
+        print("Something is wrong. Error message from bittrex: {}".format(result['message']))
         sys.exit(1)
 
 
-def do_calculate(offers, amount):
+def do_calculation(offers, amount):
     amount_left = amount
     total_get = 0
 
@@ -57,9 +57,9 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     offers = get_orderbook(args.currency)
-    total_get, amount_left = do_calculate(offers, args.amount)
+    total_get, amount_left = do_calculation(offers, args.amount)
 
     if amount_left:
-        print "We'll get {} BTC, and still have {} {} left".format(total_get, amount_left, args.currency)
+        print("We'll get {} BTC, and still have {} {} left".format(total_get, amount_left, args.currency))
     else:
-        print "We'll get {} BTC".format(total_get)
+        print("We'll get {} BTC".format(total_get))
