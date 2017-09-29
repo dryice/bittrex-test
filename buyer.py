@@ -27,7 +27,7 @@ def get_orderbook(currency):
     try:
         result = my_bittrex.get_orderbook(market, bittrex.BUY_ORDERBOOK)
     except:
-        print("Error connecting to bittrex, please try again after a few seconds")
+        print("Error connecting to bittrex, please try again a few seconds later")
         sys.exit(1)
 
     if result['success']:
