@@ -1,4 +1,10 @@
+# How to run (example)
+
+    python buyer.py ETH 16
+
+
 # Programming Test
+
 - Background
   - Bittrex.com is a site for trading crypto currency
   - https://github.com/ericsomdahl/python-bittrex is a python API that let's you get market data
