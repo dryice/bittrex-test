@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import division, print_function, unicode_literals
+
 import argparse
 import sys
 
@@ -9,13 +11,14 @@ API_KEY = None
 API_KEY_SECRET = None
 
 
-
 def command_parser():
-    parser = argparse.ArgumentParser(description="Find out how much BTC we'll get.")
+    parser = argparse.ArgumentParser(
+        description="Find out how much BTC we'll get.")
     parser.add_argument('currency', help='The currency we want to sell')
     parser.add_argument('amount', type=int, help='The amount we want to sell')
 
     return parser
+
 
 def get_orderbook(currency):
     my_bittrex = bittrex.Bittrex(API_KEY, API_KEY_SECRET)
@@ -33,6 +36,7 @@ def get_orderbook(currency):
         print "Something is wrong. Error message from bittrex: {}".format(result['message'])
         sys.exit(1)
 
+
 def do_calculate(offers, amount):
     amount_left = amount
     total_get = 0
@@ -46,6 +50,7 @@ def do_calculate(offers, amount):
             amount_left = 0
 
     return total_get, amount_left
+
 
 if __name__ == "__main__":
     parser = command_parser()
